@@ -67,10 +67,49 @@
 <button class="ghost" style="margin-top:10px" onclick="goHome()">Volver</button>
 </section>
 <section id="guide" class="hidden">
-<div class="adminbar"><div><h2 style="margin:0">Guía visual</h2><div style="font-size:12px;color:var(--muted)">Material de capacitación · Michael Jiménez</div></div><button class="ghost" onclick="goHome()">Volver</button></div>
-<div class="guideGrid">
-  <div class="card guideItem"><img src="guia-empuñadura.png" alt="Guía visual de empuñadura"><h3>Empuñadura</h3><p>Referencia visual de la empuñadura incluida en el material original de capacitación.</p></div>
-  <div class="card guideItem"><img src="guia-cartucho.png" alt="Guía visual de cartucho y componentes"><h3>Cartucho y componentes</h3><p>Referencia visual para repasar los componentes del cartucho y conceptos relacionados.</p></div>
+<div class="adminbar">
+  <div><h2 style="margin:0">Guía visual</h2><div style="font-size:12px;color:var(--muted)">Visuales originales del PDF de capacitación · Michael Jiménez</div></div>
+  <button class="ghost" onclick="goHome()">Volver</button>
+</div>
+<div class="notice"><b>Material original.</b> Esta galería contiene los visuales de capacitación del PDF: el diagrama del cartucho y las ocho referencias de empuñadura/mano.</div>
+<div class="guideGrid" style="margin-top:14px">
+<div class="card guideItem">
+          <img src="visual-cartucho.png" alt="Partes del cartucho" loading="lazy">
+          <h3>Partes del cartucho</h3>
+          <p>Diagrama original del material: bala, vaina, pólvora, culote y fulminante.</p>
+        </div><div class="card guideItem">
+          <img src="visual-empunadura-01.png" alt="Posición inicial de la mano" loading="lazy">
+          <h3>Posición inicial de la mano</h3>
+          <p>Referencia visual original de apertura y posición de la mano.</p>
+        </div><div class="card guideItem">
+          <img src="visual-empunadura-02.png" alt="Toma inicial del arma" loading="lazy">
+          <h3>Toma inicial del arma</h3>
+          <p>Referencia visual original del agarre inicial con una mano.</p>
+        </div><div class="card guideItem">
+          <img src="visual-empunadura-03.png" alt="Empuñadura con una mano" loading="lazy">
+          <h3>Empuñadura con una mano</h3>
+          <p>Vista lateral del agarre y posición de la mano dominante.</p>
+        </div><div class="card guideItem">
+          <img src="visual-empunadura-04.png" alt="Empuñadura con ambas manos" loading="lazy">
+          <h3>Empuñadura con ambas manos</h3>
+          <p>Vista lateral del apoyo de la mano secundaria.</p>
+        </div><div class="card guideItem">
+          <img src="visual-empunadura-05.png" alt="Agarre frontal / soporte" loading="lazy">
+          <h3>Agarre frontal / soporte</h3>
+          <p>Referencia visual del soporte de ambas manos.</p>
+        </div><div class="card guideItem">
+          <img src="visual-empunadura-06.png" alt="Posición alta de la mano" loading="lazy">
+          <h3>Posición alta de la mano</h3>
+          <p>Vista superior del contacto de la mano con la empuñadura.</p>
+        </div><div class="card guideItem">
+          <img src="visual-empunadura-07.png" alt="Anatomía de la mano" loading="lazy">
+          <h3>Anatomía de la mano</h3>
+          <p>Diagrama anatómico original incluido en el material.</p>
+        </div><div class="card guideItem">
+          <img src="visual-empunadura-08.png" alt="Posición del pulgar y dedos" loading="lazy">
+          <h3>Posición del pulgar y dedos</h3>
+          <p>Diagrama original sobre la colocación del pulgar y los dedos en la empuñadura.</p>
+        </div>
 </div>
 </section>
 <section id="law" class="hidden">
@@ -182,7 +221,7 @@ function openAccess(mode='student'){
  show('login');$('authEmail').focus();
 }
 function showAccount(){if(!currentUser)return openAccess();$('accountName').textContent=currentProfile?.display_name||'Usuario';$('accountEmail').textContent=currentUser.email;$('accountRole').innerHTML=currentProfile?.role==='admin'?'<b>Administrador</b><br>Esta cuenta tiene acceso al panel de administración.':`<b>Usuario</b><br>${currentProfile?.is_active?'Acceso activo':'Acceso desactivado'}${currentProfile?.access_expires_at?' · vence '+new Date(currentProfile.access_expires_at).toLocaleDateString('es-CR'):''}.`;$('adminPanelBtn').classList.toggle('hidden',currentProfile?.role!=='admin');show('account')}
-async function signUpUser(){let email=$('authEmail').value.trim().toLowerCase(),password=$('authPassword').value,name=$('authName').value.trim();if(!email||password.length<6){setLoginMessage('Ingresá un correo válido y una contraseña de al menos 6 caracteres.');return}setLoginMessage('Creando cuenta…',true);const {data,error}=await sb.auth.signUp({email,password,options:{data:{display_name:name||email.split('@')[0]},emailRedirectTo:'https://vfrticoman.github.io/portacion-cr/?v=9'}});if(error){setLoginMessage(error.message);return}if(data.session){currentUser=data.user;await loadProfile();setLoginMessage('Cuenta creada correctamente.',true);showAccount()}else setLoginMessage('Cuenta creada. Revisá tu correo y confirmá la dirección para poder iniciar sesión.',true)}
+async function signUpUser(){let email=$('authEmail').value.trim().toLowerCase(),password=$('authPassword').value,name=$('authName').value.trim();if(!email||password.length<6){setLoginMessage('Ingresá un correo válido y una contraseña de al menos 6 caracteres.');return}setLoginMessage('Creando cuenta…',true);const {data,error}=await sb.auth.signUp({email,password,options:{data:{display_name:name||email.split('@')[0]},emailRedirectTo:'https://vfrticoman.github.io/portacion-cr/?v=10'}});if(error){setLoginMessage(error.message);return}if(data.session){currentUser=data.user;await loadProfile();setLoginMessage('Cuenta creada correctamente.',true);showAccount()}else setLoginMessage('Cuenta creada. Revisá tu correo y confirmá la dirección para poder iniciar sesión.',true)}
 async function signInUser(){let email=$('authEmail').value.trim().toLowerCase(),password=$('authPassword').value;if(!email||!password){setLoginMessage('Ingresá tu correo y contraseña.');return}setLoginMessage('Ingresando…',true);const {data,error}=await sb.auth.signInWithPassword({email,password});if(error){setLoginMessage(error.message);return}currentUser=data.user;await loadProfile();
  if(desiredAccessMode==='admin' && currentProfile?.role!=='admin'){
    await sb.auth.signOut();currentUser=null;currentProfile=null;updateAccessUI();
