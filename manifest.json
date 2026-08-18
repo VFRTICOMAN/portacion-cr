@@ -1,0 +1,17 @@
+{
+  "name": "Portación CR — Práctica de Examen",
+  "short_name": "Portación CR",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f3f6f8",
+  "theme_color": "#0b1727",
+  "description": "Herramienta independiente de práctica para examen teórico.",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
