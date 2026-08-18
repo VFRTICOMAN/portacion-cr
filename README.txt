@@ -1,16 +1,12 @@
-PORTACIÓN DE ARMAS MICHAEL JIMÉNEZ — PROTOTIPO DE LANZAMIENTO
+Portación de Armas Michael Jiménez — versión conectada a Supabase
 
-Archivos listos para publicar en GitHub Pages.
-Subir todos los archivos a la raíz del repositorio.
+Incluye:
+- Inicio de sesión y registro por correo/contraseña
+- Roles Usuario / Administrador mediante Supabase
+- Michael y Julio quedan en la lista autorizada para rol Administrador al registrarse con sus correos exactos
+- Intentos de práctica/examen se sincronizan con Supabase cuando el usuario ha iniciado sesión
+- El banco de 180 preguntas permanece embebido en esta versión para garantizar continuidad mientras se completa la migración del banco al servidor
 
-Modos de usuario:
-- Practicar 180 preguntas
-- Simulacro de examen: 20 preguntas aleatorias
-- Historial y repaso local
-
-Administración:
-- Panel de edición del banco
-- Búsqueda y exportación
-
-IMPORTANTE:
-El acceso administrativo actual es de demostración/local. Antes de un lanzamiento público con usuarios reales debe conectarse autenticación y base de datos del lado del servidor.
+Antes de probar confirmación por correo, configurar en Supabase Auth > URL Configuration:
+Site URL: https://vfrticoman.github.io/portacion-cr/
+Redirect URL: https://vfrticoman.github.io/portacion-cr/**
