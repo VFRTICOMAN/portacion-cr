@@ -1,28 +1,19 @@
-PORTACIÓN DE ARMAS — MICHAEL JIMÉNEZ — V4.6 TACTICAL UI
+PORTACIÓN DE ARMAS — MICHAEL JIMÉNEZ — V4.8 AGGRESSIVE UI
 
-CAMBIO PRINCIPAL:
-- Rediseño visual tipo tactical/army: oliva, arena, negro, textura sutil, mejor jerarquía visual y mejor layout.
-- No se modificó la lógica funcional.
+CAMBIOS:
+- Look tactical más agresivo con detalles tipo cartucho/munición y acentos brass/rojo.
+- Accesos Estudiante y Administrador siguen arriba, ahora compactos y muy visibles.
+- Tarjetas de información del inicio son mucho más pequeñas e intuitivas.
+- “Videos · Ayudas visuales” queda claramente identificado.
+- No se cambió la lógica de autenticación ni de contenido.
 
-SE CONSERVA:
-- Supabase + Resend
-- Recuperación de contraseña
-- Confirmación de contraseña + 👁 mostrar/ocultar
-- Admin con usuarios registrados
-- +30 días / activar / desactivar
-- 30 días estudiante
-- 180 preguntas + simulador 20
-- Ley 7530
-- Galería visual completa
-- Hora, fecha, clima Costa Rica + 🇨🇷
-- Instagram
-- Alineación correcta + 2 videos
-- Sin acceso invitado
+SE CONSERVA TODO:
+Supabase + Resend, password reset, confirmación de contraseña, Admin usuarios,
+30 días, preguntas, simulador, Ley 7530, guía visual, videos embebidos,
+hora/clima/bandera CR, Instagram y acceso protegido.
 
-PUBLICAR EN:
-VFRTICOMAN/portacion-cr
-Branch: main
-Root del repositorio
+SUBIR A:
+VFRTICOMAN/portacion-cr → main → ROOT
 
 PRUEBA:
-https://vfrticoman.github.io/portacion-cr/?v=12
+https://vfrticoman.github.io/portacion-cr/?v=14
