@@ -1,15 +1,28 @@
-SECURE V4.3 — GALERÍA VISUAL COMPLETA
+PORTACIÓN DE ARMAS — MICHAEL JIMÉNEZ — V4.6 TACTICAL UI
 
-Incluye todo V4.2 más:
-- Todos los visuales de capacitación del PDF relevantes para el estudio visual.
-- 1 diagrama original del cartucho (página 45).
-- 8 imágenes/diagramas originales de empuñadura y mano (página 46).
-- Archivos renombrados con nombres ASCII para compatibilidad Safari/Chrome/Android.
-- Service worker v10 con todos los visuales incluidos.
-- Sin acceso invitado.
-- Banco de 180 preguntas permanece únicamente en Supabase.
+CAMBIO PRINCIPAL:
+- Rediseño visual tipo tactical/army: oliva, arena, negro, textura sutil, mejor jerarquía visual y mejor layout.
+- No se modificó la lógica funcional.
 
-PUBLICACIÓN:
-Subir TODOS los archivos de este paquete a la raíz de GitHub y reemplazar los existentes.
-Probar:
-https://vfrticoman.github.io/portacion-cr/?v=10
+SE CONSERVA:
+- Supabase + Resend
+- Recuperación de contraseña
+- Confirmación de contraseña + 👁 mostrar/ocultar
+- Admin con usuarios registrados
+- +30 días / activar / desactivar
+- 30 días estudiante
+- 180 preguntas + simulador 20
+- Ley 7530
+- Galería visual completa
+- Hora, fecha, clima Costa Rica + 🇨🇷
+- Instagram
+- Alineación correcta + 2 videos
+- Sin acceso invitado
+
+PUBLICAR EN:
+VFRTICOMAN/portacion-cr
+Branch: main
+Root del repositorio
+
+PRUEBA:
+https://vfrticoman.github.io/portacion-cr/?v=12

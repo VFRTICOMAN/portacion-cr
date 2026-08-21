@@ -1,4 +1,4 @@
-const CACHE='portacion-mj-v10';
+const CACHE='portacion-mj-v12';
 const STATIC_ASSETS=[
   './manifest.json','./icon-192.png','./icon-512.png','./apple-touch-icon.png','./favicon.png',
   './visual-cartucho.png','./visual-empunadura-01.png','./visual-empunadura-02.png','./visual-empunadura-03.png','./visual-empunadura-04.png','./visual-empunadura-05.png','./visual-empunadura-06.png','./visual-empunadura-07.png','./visual-empunadura-08.png'

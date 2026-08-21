@@ -6,7 +6,23 @@
 <link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" type="image/png" href="favicon.png">
 <title>Portación de Armas Michael Jiménez — Práctica de Examen</title>
 <style>
-:root{--ink:#102033;--muted:#6b7a90;--bg:#f3f6f8;--card:#fff;--nav:#0b1727;--blue:#2367e8;--green:#16865a;--red:#c33c43;--line:#dfe6ec;--gold:#d8a838;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+:root{
+--ink:#E9E3D3;
+--muted:#A8AE9E;
+--bg:#151914;
+--card:#20251E;
+--nav:#0E120D;
+--blue:#7E8F5B;
+--green:#7E8F5B;
+--red:#A8544E;
+--line:#3A4234;
+--gold:#C3A35B;
+--olive:#566044;
+--olive2:#2A3125;
+--sand:#D8CFB5;
+--black:#0B0E0A;
+font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink)}button,input,select,textarea{font:inherit}button{cursor:pointer}
 .shell{max-width:900px;margin:auto;min-height:100vh;padding:0 16px 110px}header{position:sticky;top:0;z-index:20;background:rgba(243,246,248,.94);backdrop-filter:blur(14px);padding:12px 0 8px}
 .brand{display:flex;align-items:center;gap:10px}.mark{width:54px;height:54px;border-radius:50%;background:#000;display:grid;place-items:center;overflow:hidden;box-shadow:0 6px 18px rgba(11,23,39,.20);flex:0 0 54px}.mark img{width:100%;height:100%;object-fit:cover;display:block}.brand strong{font-size:18px}.brand small{display:block;color:var(--muted);font-size:11px;margin-top:2px}
@@ -34,8 +50,107 @@
 .guideItem h3{margin:12px 0 5px}.guideItem p{color:var(--muted);line-height:1.45;margin:0}
 @media(max-width:640px){.accessSelector,.guideGrid{grid-template-columns:1fr}}
 
-.previewBanner{position:sticky;top:0;z-index:20;background:#fff3cd;border:1px solid #ffe69c;border-radius:14px;padding:10px 14px;margin-bottom:14px;display:flex;justify-content:space-between;gap:10px;align-items:center}.previewBanner button{border:0;border-radius:10px;padding:8px 11px;font-weight:800;background:#0b1727;color:#fff}.previewBanner.hidden{display:none}</style></head><body>
-<div class="shell"><header><div class="toprow"><div class="brand"><div class="mark" aria-label="Logo Portación de Armas Michael Jiménez"><img src="icon-192.png" alt="Portación de Armas Michael Jiménez"></div><div><strong>Portación de Armas</strong><small>Michael Jiménez · Instructor</small></div></div><button class="ghost" id="accessBtn" onclick="openAccess()">Ingresar</button></div></header>
+.previewBanner{position:sticky;top:0;z-index:20;background:#fff3cd;border:1px solid #ffe69c;border-radius:14px;padding:10px 14px;margin-bottom:14px;display:flex;justify-content:space-between;gap:10px;align-items:center}.previewBanner button{border:0;border-radius:10px;padding:8px 11px;font-weight:800;background:#0b1727;color:#fff}.previewBanner.hidden{display:none}
+.crUtility{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}.utilityCard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px 16px;box-shadow:0 7px 22px rgba(16,32,51,.05)}.utilityTop{display:flex;align-items:center;justify-content:space-between;gap:8px}.utilityLabel{font-size:11px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.04em}.utilityValue{font-size:22px;font-weight:900;margin-top:5px}.utilitySub{font-size:11px;color:var(--muted);margin-top:3px}.flagBadge{font-size:23px;line-height:1}.userMeta{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}.userMeta .tag{display:inline-block}.adminUser{grid-template-columns:70px 1fr auto}.adminUser p{margin:0}.linkBtn{border:0;background:transparent;color:var(--blue);font-weight:800;padding:8px 0;text-decoration:underline}.passwordHint{font-size:11px;color:var(--muted);margin-top:-4px}.resetActions{display:grid;gap:10px;margin-top:14px}@media(max-width:640px){.crUtility{grid-template-columns:1fr}.adminUser{grid-template-columns:58px 1fr}.adminUser>div:last-child{grid-column:2}}
+
+.passwordWrap{position:relative}.passwordWrap input{padding-right:50px!important}.pwToggle{position:absolute;right:7px;top:50%;transform:translateY(-50%);border:0;background:transparent;font-size:18px;padding:8px;line-height:1}
+.socialRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.socialBtn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;border-radius:12px;padding:11px 14px;font-weight:800;border:1px solid var(--line);background:#fff;color:var(--ink)}
+.videoGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}.videoCard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}.videoCard h3{margin:8px 0}.videoCard p{color:var(--muted);line-height:1.45}.videoLink{display:block;text-decoration:none;text-align:center;margin-top:12px}
+@media(max-width:640px){.videoGrid{grid-template-columns:1fr}}
+
+
+body{
+  background:
+    radial-gradient(circle at 20% 0%, rgba(126,143,91,.12), transparent 28%),
+    linear-gradient(rgba(255,255,255,.012) 1px, transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.012) 1px, transparent 1px),
+    var(--bg);
+  background-size:auto,32px 32px,32px 32px,auto;
+  color:var(--ink)
+}
+.shell{max-width:1040px;padding:0 18px 120px}
+header{background:rgba(14,18,13,.93);border-bottom:1px solid rgba(195,163,91,.18)}
+.brand strong{color:var(--sand);letter-spacing:.4px;text-transform:uppercase;font-size:16px}
+.brand small{color:#8F9985;letter-spacing:.8px;text-transform:uppercase}
+.mark{border:1px solid rgba(195,163,91,.35);box-shadow:0 0 0 3px rgba(86,96,68,.2),0 10px 24px rgba(0,0,0,.35)}
+.ghost{background:#171C15;color:var(--sand);border-color:#3A4234}
+.hero{
+  background:
+    linear-gradient(135deg,rgba(11,14,10,.88),rgba(41,49,36,.96)),
+    repeating-linear-gradient(135deg,rgba(255,255,255,.018) 0 6px,transparent 6px 12px);
+  border:1px solid rgba(195,163,91,.26);
+  box-shadow:0 18px 40px rgba(0,0,0,.34);
+  position:relative;overflow:hidden
+}
+.hero:after{
+  content:"CR • ENTRENAMIENTO • MICHAEL JIMÉNEZ";
+  position:absolute;right:18px;bottom:12px;
+  font-size:10px;letter-spacing:1.7px;color:rgba(216,207,181,.35);font-weight:800
+}
+.hero h1{color:#F4EEDB;text-transform:uppercase;letter-spacing:.5px}
+.hero p{color:#C8CFBE}
+.pill{background:rgba(195,163,91,.09);border-color:rgba(195,163,91,.28);color:#DDD4BC;text-transform:uppercase;letter-spacing:.4px}
+.card{
+  background:linear-gradient(180deg,#22281F,#1C211A);
+  border-color:#384031;
+  box-shadow:0 10px 26px rgba(0,0,0,.18)
+}
+.choice{min-height:170px}
+.choice h2,.guideCard h2{color:#E7E1D0}
+.choice p,.guideItem p{color:#AAB2A2}
+.choice .go{color:#C3A35B}
+.practice,.exam{background:linear-gradient(180deg,#22281F,#1B2119);border-color:#46503A}
+.notice{background:#2B2A20;color:#D7C98F;border-color:#5B5237}
+.sectiontitle h3{color:#D9D1BB;text-transform:uppercase;letter-spacing:.7px}
+.stat{background:#1E241C;border-color:#35402F}
+.stat b{color:#DCCB91}.stat span{color:#9FA896;text-transform:uppercase;letter-spacing:.5px}
+.primary{background:#66734C;color:#fff;border:1px solid #7E8F5B}
+.primary:hover{filter:brightness(1.08)}
+.secondary{background:#1C211A;color:#E7E1D0;border-color:#3B4535}
+.login{background:linear-gradient(180deg,#20261E,#181D17)}
+.field input,.field textarea,.field select{
+  background:#10140F!important;color:#EEE8D5!important;border-color:#3B4535!important
+}
+.field input::placeholder,.field textarea::placeholder{color:#788170}
+.adminbar h2{color:#E8E1CB;text-transform:uppercase;letter-spacing:.6px}
+.adminq{background:#1C211A;border-color:#35402F}
+.tag{background:#303728;color:#C8D0BC;border:1px solid #46513C}
+.toolbar input{background:#10140F;color:#EEE8D5;border-color:#3B4535}
+.accessSelector{grid-template-columns:1fr 1fr}
+.accessChoice{border:1px solid #3C4635;min-height:112px;position:relative;overflow:hidden}
+.accessChoice:before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(135deg,rgba(255,255,255,.018) 0 7px,transparent 7px 14px)
+}
+.accessStudent{background:#20261E;color:#E9E3D3}
+.accessAdmin{background:#11160F;color:#E9E3D3;border-color:#596348}
+.guideCard{border-left:4px solid #66734C}
+.socialBtn{background:#171C15!important;color:#E7E1D0!important;border-color:#3A4234!important}
+.videoCard{background:#1E241C!important;border-color:#384031!important}
+.previewBanner{background:#3A3526;border-color:#76663C;color:#F2E1A2}
+.modalbox{background:#1C211A;color:#E9E3D3;border:1px solid #3B4535}
+.option{background:#171C15;color:#E9E3D3;border-color:#35402F}
+.option.selected{background:#2B3326;border-color:#7E8F5B}
+.option.correct{background:#223629;border-color:#5E986F}
+.option.wrong{background:#3C2525;border-color:#A8544E}
+.feedback.good{background:#203127;color:#B9E0C7}
+.feedback.bad{background:#3A2525;color:#F0B9B9}
+.next{background:#66734C;box-shadow:0 10px 28px rgba(0,0,0,.35)}
+.scoreInner{background:#181D17;color:#E9E3D3}
+.result{background:#1E241C}
+#crInfoPanel{
+  border:1px solid rgba(195,163,91,.22)!important;
+  background:linear-gradient(180deg,#20261E,#181D17)!important
+}
+#crClock,#crDate,#crWeather,#crWeatherDetail{color:#DCD4BD!important}
+#adminUsers .adminq{border-left:3px solid #66734C}
+@media(max-width:640px){
+  .accessSelector{grid-template-columns:1fr}
+  .hero:after{display:none}
+}
+
+</style></head><body>
+<div class="shell"><header><div class="toprow"><div class="brand"><div class="mark" aria-label="Logo Portación de Armas Michael Jiménez"><img src="icon-192.png" alt="Portación de Armas Michael Jiménez"></div><div><strong>Portación de Armas</strong><small>Michael Jiménez · Instructor 🇨🇷</small></div></div><button class="ghost" id="accessBtn" onclick="openAccess()">Ingresar</button></div></header><div id="tacticalStrip" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0 14px;padding:9px 12px;border:1px solid #3A4234;border-radius:12px;background:#11160F;color:#BFC7B5;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase"><span>🇨🇷 Costa Rica</span><span style="opacity:.45">•</span><span>Entrenamiento Teórico</span><span style="opacity:.45">•</span><span>Michael Jiménez</span></div>
 <section id="home">
 
 <div class="accessSelector" id="accessSelector">
@@ -46,26 +161,63 @@
     <small>Ingreso exclusivo para Michael Jiménez y administradores autorizados.</small>
   </button>
 </div>
+<div class="crUtility">
+  <div class="utilityCard"><div class="utilityTop"><div><div class="utilityLabel">Hora Costa Rica</div><div class="utilityValue" id="crClock">--:--</div><div class="utilitySub" id="crDate">America/Costa_Rica</div></div><div class="flagBadge" aria-label="Bandera de Costa Rica">🇨🇷</div></div></div>
+  <div class="utilityCard"><div class="utilityTop"><div><div class="utilityLabel">Clima · San José</div><div class="utilityValue" id="crWeather">Cargando…</div><div class="utilitySub" id="crWeatherSub">Temperatura y condición actual</div></div><div class="flagBadge" id="weatherIcon">🌤️</div></div></div>
+</div>
 <div class="hero"><h1>Preparáte con confianza.</h1><p>Estudiá el banco completo o practicá bajo un formato de examen con preguntas aleatorias.</p><div class="pillrow"><span class="pill">180 preguntas</span><span class="pill">Simulacro de 20</span><span class="pill">Cuenta y progreso</span></div></div>
-<div class="grid"><button class="card choice practice" onclick="startQuiz('practice')"><div class="icon">📚</div><h2>Practicar 180</h2><p>Recorré todo el banco, con respuesta y explicación después de cada pregunta.</p><span class="go">→</span></button><button class="card choice exam" onclick="startQuiz('exam')"><div class="icon">🎯</div><h2>Simulacro de examen · 20 preguntas aleatorias</h2><p>20 preguntas seleccionadas aleatoriamente del banco. Cada intento genera una combinación diferente.</p><span class="go">→</span></button></div>
+<div class="grid" style="margin-top:14px"><button class="card choice practice" onclick="startQuiz('practice')"><div class="icon">📚</div><h2>Practicar 180</h2><p>Recorré todo el banco, con respuesta y explicación después de cada pregunta.</p><span class="go">→</span></button><button class="card choice exam" onclick="startQuiz('exam')"><div class="icon">🎯</div><h2>Simulacro de examen · 20 preguntas aleatorias</h2><p>20 preguntas seleccionadas aleatoriamente del banco. Cada intento genera una combinación diferente.</p><span class="go">→</span></button></div>
 <div class="card guideCard" onclick="openGuide()" role="button" tabindex="0"><div class="icon" style="font-size:28px">🖼️</div><h2 style="margin:8px 0">Guía visual</h2><p style="color:var(--muted);line-height:1.45">Repasá empuñadura y componentes visuales del material de capacitación.</p></div>
-<div class="card guideCard" onclick="openLaw()" role="button" tabindex="0"><div class="icon" style="font-size:28px">⚖️</div><h2 style="margin:8px 0">Ley 7530 · Material de estudio</h2><p style="color:var(--muted);line-height:1.45">Consultá el compendio legal incluido en el material de capacitación. Requiere una cuenta activa.</p></div>
+<div class="card guideCard" onclick="openLaw()" role="button" tabindex="0"><div class="icon" style="font-size:28px">⚖️</div>
+<div class="card guideCard" onclick="openAlignmentVideos()" role="button" tabindex="0"><div class="icon" style="font-size:28px">🎯</div><h2 style="margin:8px 0">Alineación correcta</h2><p style="color:var(--muted);line-height:1.45">Videos de referencia para repasar la alineación correcta durante la capacitación.</p></div>
+<div class="card guideCard"><div class="icon" style="font-size:28px">📲</div><h2 style="margin:8px 0">Michael Instructor</h2><p style="color:var(--muted);line-height:1.45">Seguile para contenido y actualizaciones de capacitación.</p><div class="socialRow"><a class="socialBtn" href="https://www.instagram.com/michael.instructor?igsi=Z2ZucGN4eHRpYnF5" target="_blank" rel="noopener">📸 Instagram · @michael.instructor</a></div></div>
+<h2 style="margin:8px 0">Ley 7530 · Material de estudio</h2><p style="color:var(--muted);line-height:1.45">Consultá el compendio legal incluido en el material de capacitación. Requiere una cuenta activa.</p></div>
 <div class="notice"><b>Material de práctica no oficial.</b> Esta aplicación es una herramienta educativa independiente y no representa ni está afiliada a una institución gubernamental.</div>
 <div class="sectiontitle"><h3>Tu progreso</h3><span id="progressStorage">Guardado en este dispositivo</span></div><div class="statgrid"><div class="stat"><b id="attemptsStat">0</b><span>Intentos</span></div><div class="stat"><b id="bestStat">—</b><span>Mejor examen</span></div><div class="stat"><b id="seenStat">0</b><span>Preguntas vistas</span></div></div>
 </section>
 <section id="quiz" class="card quizcard hidden"><div class="qmeta"><span id="counter"></span><span id="scoreLive"></span></div><div class="bar"><i id="progress"></i></div><div class="qmeta" id="category"></div><h2 class="question" id="question"></h2><div id="options"></div><div id="feedback" class="feedback hidden"></div></section>
 <section id="result" class="card result hidden"><h2 id="resultTitle">Resultado</h2><div class="scoreRing" id="scoreRing"><div class="scoreInner" id="finalScore"></div></div><p id="summary"></p><div class="resultActions"><button class="secondary" onclick="goHome()">Volver al inicio</button><button class="primary" onclick="retryWrong()">Repasar falladas</button></div></section>
-<section id="admin" class="hidden"><div style="margin:0 0 12px"><button class="secondary" onclick="enterStudentPreview()">👁️ Vista estudiante</button></div><div class="adminbar"><div><h2 style="margin:0">Panel de administración</h2><div style="font-size:12px;color:var(--muted)">Administración segura · acceso por cuenta</div></div><button class="ghost" onclick="logoutAdmin()">Salir</button></div><div class="statgrid"><div class="stat"><b id="adminCount">180</b><span>Preguntas activas</span></div><div class="stat"><b id="adminAttempts">0</b><span>Intentos locales</span></div><div class="stat"><b id="adminAvg">—</b><span>Promedio examen</span></div></div><div class="notice"><b>Administración conectada a Supabase.</b> Los cambios en las preguntas se guardan en el servidor y el acceso de estudiantes se controla por cuenta.</div><div class="card" style="margin-top:14px"><div class="toolbar"><input id="adminSearch" placeholder="Buscar pregunta…" oninput="renderAdmin()"><button class="primary" onclick="exportBank()">Exportar banco</button></div></div><div class="adminlist" id="adminList"></div></section>
+<section id="admin" class="hidden"><div style="margin:0 0 12px"><button class="secondary" onclick="enterStudentPreview()">👁️ Vista estudiante</button></div><div class="adminbar"><div><h2 style="margin:0">Panel de administración</h2><div style="font-size:12px;color:var(--muted)">Administración segura · acceso por cuenta</div></div><button class="ghost" onclick="logoutAdmin()">Salir</button></div><div class="statgrid"><div class="stat"><b id="adminCount">180</b><span>Preguntas activas</span></div><div class="stat"><b id="adminAttempts">0</b><span>Intentos locales</span></div><div class="stat"><b id="adminAvg">—</b><span>Promedio examen</span></div></div><div class="notice"><b>Administración conectada a Supabase.</b> Los cambios en las preguntas se guardan en el servidor y el acceso de estudiantes se controla por cuenta.</div>
+<div class="card" style="margin-top:14px">
+  <div class="sectiontitle" style="margin:0 0 10px"><h3>Usuarios registrados</h3><span id="registeredUserCount">—</span></div>
+  <div class="toolbar" style="margin-bottom:10px"><input id="userSearch" placeholder="Buscar por nombre o correo…" oninput="renderUsers()"><button class="secondary" onclick="renderUsers()">Actualizar</button></div>
+  <div class="adminlist" id="adminUsers"><p style="color:var(--muted)">Cargando usuarios…</p></div>
+</div>
+<div class="card" style="margin-top:14px"><div class="toolbar"><input id="adminSearch" placeholder="Buscar pregunta…" oninput="renderAdmin()"><button class="primary" onclick="exportBank()">Exportar banco</button></div></div><div class="adminlist" id="adminList"></div></section>
 <section id="login" class="card login hidden">
 <h2 id="loginTitle">Acceso estudiante</h2>
 <p id="loginIntro" style="color:var(--muted);line-height:1.45">Ingresá o creá tu cuenta para acceder al entrenamiento. Las cuentas de estudiante tienen 30 días de acceso.</p>
 <label class="field" id="nameField"><span>Nombre</span><input id="authName" type="text" autocomplete="name" placeholder="Tu nombre"></label>
 <label class="field"><span>Correo electrónico</span><input id="authEmail" type="email" autocomplete="email" placeholder="correo@ejemplo.com"></label>
-<label class="field"><span>Contraseña</span><input id="authPassword" type="password" autocomplete="current-password" placeholder="Mínimo 6 caracteres"></label>
+<label class="field"><span>Contraseña</span><div class="passwordWrap"><input id="authPassword" type="password" autocomplete="current-password" placeholder="Mínimo 6 caracteres"><button type="button" class="pwToggle" onclick="togglePassword('authPassword',this)" aria-label="Mostrar u ocultar contraseña">👁️</button></div></label>
+<label class="field" id="confirmPasswordField"><span>Confirmar contraseña</span><div class="passwordWrap"><input id="authPasswordConfirm" type="password" autocomplete="new-password" placeholder="Repetí la contraseña"><button type="button" class="pwToggle" onclick="togglePassword('authPasswordConfirm',this)" aria-label="Mostrar u ocultar contraseña">👁️</button></div></label>
+<div class="passwordHint" id="passwordHint">Al crear una cuenta, escribí la contraseña dos veces para verificarla.</div>
 <div class="resultActions"><button class="secondary" onclick="signInUser()">Iniciar sesión</button><button class="primary" id="createAccountBtn" onclick="signUpUser()">Crear cuenta</button></div>
-<p id="loginMsg" style="color:var(--red);font-size:12px;line-height:1.4"></p>
+<p id="loginMsg" style="color:var(--red);font-size:12px;line-height:1.4"></p><button class="linkBtn" onclick="requestPasswordReset()">¿Olvidaste tu contraseña?</button>
 <button class="ghost" style="margin-top:10px" onclick="goHome()">Volver</button>
 </section>
+
+<section id="resetPassword" class="card login hidden">
+  <h2>Crear nueva contraseña</h2>
+  <p style="color:var(--muted);line-height:1.45">Ingresá la nueva contraseña dos veces para confirmar el cambio.</p>
+  <label class="field"><span>Nueva contraseña</span><div class="passwordWrap"><input id="newPassword" type="password" autocomplete="new-password" placeholder="Mínimo 6 caracteres"><button type="button" class="pwToggle" onclick="togglePassword('newPassword',this)" aria-label="Mostrar u ocultar contraseña">👁️</button></div></label>
+  <label class="field"><span>Confirmar nueva contraseña</span><div class="passwordWrap"><input id="newPasswordConfirm" type="password" autocomplete="new-password" placeholder="Repetí la contraseña"><button type="button" class="pwToggle" onclick="togglePassword('newPasswordConfirm',this)" aria-label="Mostrar u ocultar contraseña">👁️</button></div></label>
+  <div class="resetActions"><button class="primary" onclick="completePasswordReset()">Guardar nueva contraseña</button><button class="secondary" onclick="goHome()">Cancelar</button></div>
+  <p id="resetMsg" style="font-size:12px;line-height:1.4"></p>
+</section>
+
+<section id="alignmentVideos" class="hidden">
+  <div class="adminbar">
+    <div><h2 style="margin:0">🎯 Alineación correcta</h2><div style="font-size:12px;color:var(--muted)">Videos de referencia · Michael Jiménez</div></div>
+    <button class="ghost" onclick="goHome()">Volver</button>
+  </div>
+  <div class="notice"><b>Material complementario.</b> Estos videos forman parte del material de apoyo de la capacitación.</div>
+  <div class="videoGrid">
+    <div class="videoCard"><div style="font-size:30px">▶️</div><h3>Alineación correcta · Video 1</h3><p>Referencia visual para complementar la explicación del instructor.</p><a class="primary videoLink" href="https://youtube.com/shorts/_j5slol9ExA?si=P2n1N5D63IT720J-" target="_blank" rel="noopener">Ver video en YouTube</a></div>
+    <div class="videoCard"><div style="font-size:30px">▶️</div><h3>Alineación correcta · Video 2</h3><p>Segunda referencia visual del material de capacitación.</p><a class="primary videoLink" href="https://youtube.com/shorts/aDlPUuYGfYk?si=263MQ8olVX9iuYo3" target="_blank" rel="noopener">Ver video en YouTube</a></div>
+  </div>
+</section>
+
 <section id="guide" class="hidden">
 <div class="adminbar">
   <div><h2 style="margin:0">Guía visual</h2><div style="font-size:12px;color:var(--muted)">Visuales originales del PDF de capacitación · Michael Jiménez</div></div>
@@ -135,6 +287,23 @@
 const SUPABASE_URL="https://wexfrkzgiueifqyylfcz.supabase.co";
 const SUPABASE_KEY="sb_publishable_5PrGFt-7fil_9HnNMRs1OA_NvMs8so1";
 const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const APP_URL=location.origin+location.pathname;
+function updateCostaRicaClock(){
+  const now=new Date();
+  const time=new Intl.DateTimeFormat('es-CR',{timeZone:'America/Costa_Rica',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(now);
+  const date=new Intl.DateTimeFormat('es-CR',{timeZone:'America/Costa_Rica',weekday:'long',day:'numeric',month:'long'}).format(now);
+  if($('crClock'))$('crClock').textContent=time; if($('crDate'))$('crDate').textContent=date+' · Costa Rica';
+}
+async function loadCostaRicaWeather(){
+  try{
+    const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=9.9281&longitude=-84.0907&current=temperature_2m,apparent_temperature,weather_code&timezone=America%2FCosta_Rica');
+    const j=await r.json(),c=j.current;if(!c)throw new Error('sin datos');
+    const code=Number(c.weather_code),map=code===0?['Despejado','☀️']:code<=3?['Parcialmente nublado','⛅']:code<=48?['Nublado / neblina','☁️']:code<=67?['Lluvia','🌧️']:code<=77?['Llovizna / granizo','🌦️']:code<=82?['Aguaceros','🌧️']:['Tormenta','⛈️'];
+    $('crWeather').textContent=Math.round(c.temperature_2m)+'°C · '+map[0];
+    $('crWeatherSub').textContent='Sensación '+Math.round(c.apparent_temperature)+'°C · San José'; $('weatherIcon').textContent=map[1];
+  }catch(e){$('crWeather').textContent='Clima no disponible';$('crWeatherSub').textContent='San José · intentá actualizar luego';}
+}
+
 let currentUser=null,currentProfile=null,desiredAccessMode='student',studentPreview=false;
 let BANK=[]; // Banco remoto: no existe modo invitado/offline
 
@@ -142,7 +311,7 @@ let BANK=[]; // Banco remoto: no existe modo invitado/offline
 let quiz=[],index=0,score=0,wrong=[],answered=false,selected=null,currentMode='practice',seen=new Set(JSON.parse(localStorage.getItem('portacion_seen')||'[]'));
 const $=id=>document.getElementById(id);const letters='ABCD';
 function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-function show(id){['home','quiz','result','admin','login','guide','law','account'].forEach(x=>$(x).classList.toggle('hidden',x!==id));$('next').classList.add('hidden');window.scrollTo(0,0)}
+function show(id){['home','quiz','result','admin','login','resetPassword','alignmentVideos','guide','law','account'].forEach(x=>$(x).classList.toggle('hidden',x!==id));$('next').classList.add('hidden');window.scrollTo(0,0)}
 function hasActiveTrainingAccess(){
  if(!currentUser||!currentProfile)return false;
  if(currentProfile.role==='admin')return true;
@@ -153,7 +322,7 @@ function hasActiveTrainingAccess(){
 
 const _originalShow = show;
 show = function(id){
-  const protectedStudentSections=['quiz','guide','law'];
+  const protectedStudentSections=['quiz','guide','law','alignmentVideos'];
   if(protectedStudentSections.includes(id)){
     if(!currentUser || !hasActiveTrainingAccess()){
       _originalShow('login');
@@ -168,6 +337,15 @@ show = function(id){
   }
   return _originalShow(id);
 };
+
+
+function togglePassword(id,btn){
+ const input=$(id); if(!input)return;
+ const reveal=input.type==='password';
+ input.type=reveal?'text':'password';
+ if(btn)btn.textContent=reveal?'🙈':'👁️';
+}
+function openAlignmentVideos(){if(!requireTrainingAccess())return;show('alignmentVideos')}
 
 function requireTrainingAccess(){
  if(!currentUser){openAccess('student');setLoginMessage('Iniciá sesión o creá una cuenta para acceder al entrenamiento.');return false}
@@ -206,7 +384,7 @@ function updateAccessUI(){let b=$('accessBtn');if(!currentUser){b.textContent='C
  else if(currentProfile?.access_expires_at){let d=new Date(currentProfile.access_expires_at);$('progressStorage').textContent='Acceso hasta '+d.toLocaleDateString('es-CR')}
  else $('progressStorage').textContent='Cuenta conectada';
 }
-async function initAuth(){const {data}=await sb.auth.getSession();currentUser=data.session?.user||null;if(currentUser)await loadProfile();sb.auth.onAuthStateChange(async(_event,session)=>{currentUser=session?.user||null;if(currentUser)await loadProfile();else{currentProfile=null;updateAccessUI()}})}
+async function initAuth(){const {data}=await sb.auth.getSession();currentUser=data.session?.user||null;if(currentUser)await loadProfile();if(location.search.includes('reset=1')&&currentUser)show('resetPassword');sb.auth.onAuthStateChange(async(event,session)=>{currentUser=session?.user||null;if(currentUser)await loadProfile();else{currentProfile=null;updateAccessUI()}if(event==='PASSWORD_RECOVERY'){show('resetPassword')}})}
 function openAccess(mode='student'){
  desiredAccessMode=mode;
  if(currentUser){
@@ -218,16 +396,36 @@ function openAccess(mode='student'){
    ?'Ingreso exclusivo para administradores autorizados. La cuenta debe estar previamente autorizada en el sistema.'
    :'Ingresá o creá tu cuenta para acceder al entrenamiento. Las cuentas de estudiante tienen 30 días de acceso.';
  $('createAccountBtn').textContent=mode==='admin'?'Crear / activar cuenta Admin':'Crear cuenta';
+ $('confirmPasswordField').classList.remove('hidden');$('passwordHint').classList.remove('hidden');
  show('login');$('authEmail').focus();
 }
 function showAccount(){if(!currentUser)return openAccess();$('accountName').textContent=currentProfile?.display_name||'Usuario';$('accountEmail').textContent=currentUser.email;$('accountRole').innerHTML=currentProfile?.role==='admin'?'<b>Administrador</b><br>Esta cuenta tiene acceso al panel de administración.':`<b>Usuario</b><br>${currentProfile?.is_active?'Acceso activo':'Acceso desactivado'}${currentProfile?.access_expires_at?' · vence '+new Date(currentProfile.access_expires_at).toLocaleDateString('es-CR'):''}.`;$('adminPanelBtn').classList.toggle('hidden',currentProfile?.role!=='admin');show('account')}
-async function signUpUser(){let email=$('authEmail').value.trim().toLowerCase(),password=$('authPassword').value,name=$('authName').value.trim();if(!email||password.length<6){setLoginMessage('Ingresá un correo válido y una contraseña de al menos 6 caracteres.');return}setLoginMessage('Creando cuenta…',true);const {data,error}=await sb.auth.signUp({email,password,options:{data:{display_name:name||email.split('@')[0]},emailRedirectTo:'https://vfrticoman.github.io/portacion-cr/?v=10'}});if(error){setLoginMessage(error.message);return}if(data.session){currentUser=data.user;await loadProfile();setLoginMessage('Cuenta creada correctamente.',true);showAccount()}else setLoginMessage('Cuenta creada. Revisá tu correo y confirmá la dirección para poder iniciar sesión.',true)}
+async function signUpUser(){let email=$('authEmail').value.trim().toLowerCase(),password=$('authPassword').value,confirm=$('authPasswordConfirm').value,name=$('authName').value.trim();if(!email||password.length<6){setLoginMessage('Ingresá un correo válido y una contraseña de al menos 6 caracteres.');return}if(password!==confirm){setLoginMessage('Las dos contraseñas no coinciden. Revisalas e intentá nuevamente.');return}setLoginMessage('Creando cuenta…',true);const {data,error}=await sb.auth.signUp({email,password,options:{data:{display_name:name||email.split('@')[0]},emailRedirectTo:APP_URL}});if(error){setLoginMessage(error.message);return}if(data.session){currentUser=data.user;await loadProfile();setLoginMessage('Cuenta creada correctamente.',true);showAccount()}else setLoginMessage('Cuenta creada. Revisá tu correo y confirmá la dirección para poder iniciar sesión.',true)}
 async function signInUser(){let email=$('authEmail').value.trim().toLowerCase(),password=$('authPassword').value;if(!email||!password){setLoginMessage('Ingresá tu correo y contraseña.');return}setLoginMessage('Ingresando…',true);const {data,error}=await sb.auth.signInWithPassword({email,password});if(error){setLoginMessage(error.message);return}currentUser=data.user;await loadProfile();
  if(desiredAccessMode==='admin' && currentProfile?.role!=='admin'){
    await sb.auth.signOut();currentUser=null;currentProfile=null;updateAccessUI();
    setLoginMessage('Esta cuenta no está autorizada como Administrador.');return
  }
  setLoginMessage('',true);showAccount()}
+
+async function requestPasswordReset(){
+ const email=$('authEmail').value.trim().toLowerCase();
+ if(!email){setLoginMessage('Escribí primero el correo de tu cuenta.');$('authEmail').focus();return}
+ setLoginMessage('Enviando enlace de recuperación…',true);
+ const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:APP_URL+'?reset=1'});
+ if(error){setLoginMessage(error.message);return}
+ setLoginMessage('Listo. Revisá tu correo para abrir el enlace de recuperación.',true);
+}
+async function completePasswordReset(){
+ const p=$('newPassword').value,c=$('newPasswordConfirm').value,msg=$('resetMsg');
+ if(p.length<6){msg.style.color='var(--red)';msg.textContent='La contraseña debe tener al menos 6 caracteres.';return}
+ if(p!==c){msg.style.color='var(--red)';msg.textContent='Las contraseñas no coinciden.';return}
+ msg.style.color='var(--green)';msg.textContent='Guardando…';
+ const {error}=await sb.auth.updateUser({password:p});
+ if(error){msg.style.color='var(--red)';msg.textContent=error.message;return}
+ msg.textContent='Contraseña actualizada. Ya podés continuar con tu cuenta.';
+ setTimeout(()=>showAccount(),900);
+}
 async function logoutUser(){await sb.auth.signOut();currentUser=null;currentProfile=null;updateAccessUI();goHome()}
 function openAdminPanel(){if(!currentUser||currentProfile?.role!=='admin'){setLoginMessage('Esta cuenta no tiene permisos de administrador.');return openAccess()}show('admin');renderAdmin();adminStats();renderUsers()}
 function logoutAdmin(){showAccount()}
@@ -297,21 +495,28 @@ function renderLaw(){
 
 async function renderUsers(){
  if(currentProfile?.role!=='admin')return;
- const {data,error}=await sb.from('profiles').select('id,display_name,role,created_at,access_expires_at,is_active').order('created_at',{ascending:false});
- const box=$('adminUsers'); if(error){box.innerHTML='<p>No se pudieron cargar usuarios.</p>';return}
- const users=(data||[]).filter(u=>u.role==='user');
- if(!users.length){box.innerHTML='<p style="color:var(--muted)">Todavía no hay estudiantes registrados.</p>';return}
+ const box=$('adminUsers'); if(!box)return; box.innerHTML='<p style="color:var(--muted)">Cargando usuarios…</p>';
+ const {data,error}=await sb.rpc('admin_list_registered_users');
+ if(error){box.innerHTML='<p>No se pudieron cargar usuarios: '+escapeHtml(error.message)+'</p>';return}
+ const term=($('userSearch')?.value||'').trim().toLowerCase();
+ const rows=(data||[]).filter(u=>!term||((u.display_name||'')+' '+(u.email||'')).toLowerCase().includes(term));
+ const students=rows.filter(u=>u.role!=='admin'),admins=rows.filter(u=>u.role==='admin');
+ if($('registeredUserCount'))$('registeredUserCount').textContent=(data||[]).length+' cuentas · '+(data||[]).filter(u=>u.role!=='admin').length+' estudiantes';
+ if(!rows.length){box.innerHTML='<p style="color:var(--muted)">No hay usuarios que coincidan.</p>';return}
  box.innerHTML='';
- users.forEach(u=>{
+ [...admins,...students].forEach(u=>{
    const expired=u.access_expires_at && new Date(u.access_expires_at).getTime()<=Date.now();
-   const status=!u.is_active?'Desactivado':expired?'Vencido':'Activo';
-   let d=document.createElement('div');d.className='adminq';
-   d.innerHTML=`<div><div class="tag">${status}</div></div><p><b>${escapeHtml(u.display_name||'Usuario')}</b><br><span style="color:var(--muted)">Vence: ${u.access_expires_at?new Date(u.access_expires_at).toLocaleDateString('es-CR'):'—'}</span></p><div style="display:flex;gap:5px;flex-wrap:wrap"><button onclick="extendAccess('${u.id}')">+30 días</button><button onclick="toggleAccess('${u.id}',${u.is_active?'false':'true'})">${u.is_active?'Desactivar':'Activar'}</button></div>`;
+   const status=u.role==='admin'?'Admin':!u.is_active?'Desactivado':expired?'Vencido':'Activo';
+   const confirmed=u.email_confirmed_at?'Correo verificado':'Correo pendiente';
+   const last=u.last_sign_in_at?new Date(u.last_sign_in_at).toLocaleString('es-CR'):'Nunca';
+   let d=document.createElement('div');d.className='adminq adminUser';
+   const controls=u.role==='admin'?'<span class="tag">Permanente</span>':`<div style="display:flex;gap:5px;flex-wrap:wrap"><button onclick="extendAccess('${u.id}')">+30 días</button><button onclick="toggleAccess('${u.id}',${u.is_active?'false':'true'})">${u.is_active?'Desactivar':'Activar'}</button></div>`;
+   d.innerHTML=`<div><div class="tag">${status}</div></div><p><b>${escapeHtml(u.display_name||'Usuario')}</b><br><span style="color:var(--muted)">${escapeHtml(u.email||'Sin correo')}</span><span class="userMeta"><span class="tag">${confirmed}</span><span class="tag">Último ingreso: ${last}</span>${u.access_expires_at?`<span class="tag">Vence: ${new Date(u.access_expires_at).toLocaleDateString('es-CR')}</span>`:''}</span></p><div>${controls}</div>`;
    box.appendChild(d)
  })
 }
 async function extendAccess(id){const {error}=await sb.rpc('extend_student_access',{target_user:id,extra_days:30});if(error)alert(error.message);else renderUsers()}
 async function toggleAccess(id,val){const {error}=await sb.rpc('set_student_active',{target_user:id,new_active:val});if(error)alert(error.message);else renderUsers()}
 
-refreshStats();initAuth();if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+refreshStats();updateCostaRicaClock();setInterval(updateCostaRicaClock,1000);loadCostaRicaWeather();setInterval(loadCostaRicaWeather,15*60*1000);initAuth();if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script></body></html>
