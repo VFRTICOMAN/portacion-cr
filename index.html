@@ -243,6 +243,13 @@ header{padding:9px 0 7px}
   .hero h1{font-size:25px!important}
 }
 
+
+.authModeRow{display:flex;gap:8px;margin:10px 0 14px}
+.authModeBtn{flex:1;border:1px solid var(--line);background:#171c15;color:#e9e3d3;border-radius:11px;padding:10px;font-weight:800;font-size:12px}
+.authModeBtn.active{background:#66734c;border-color:#7e8f5b}
+.authHint{font-size:11px;color:var(--muted);line-height:1.35;margin-top:8px}
+.eyeIcon{font-style:normal;font-size:16px}
+
 </style></head><body>
 <div class="shell"><header><div class="toprow"><div class="brand"><div class="mark" aria-label="Logo Portación de Armas Michael Jiménez"><img src="icon-192.png" alt="Portación de Armas Michael Jiménez"></div><div><strong>Portación de Armas</strong><small>Michael Jiménez · Instructor 🇨🇷</small></div></div><button class="ghost" id="accessBtn" onclick="openAccess()">Ingresar</button></div></header><div id="tacticalStrip" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0 14px;padding:9px 12px;border:1px solid #3A4234;border-radius:12px;background:#11160F;color:#BFC7B5;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase"><span>🇨🇷 Costa Rica</span><span style="opacity:.45">•</span><span>🔫 Entrenamiento Teórico</span><span style="opacity:.45">•</span><span>Michael Jiménez</span></div>
 <section id="home">
@@ -279,26 +286,33 @@ header{padding:9px 0 7px}
 <div class="card" style="margin-top:14px"><div class="toolbar"><input id="adminSearch" placeholder="Buscar pregunta…" oninput="renderAdmin()"><button class="primary" onclick="exportBank()">Exportar banco</button></div></div><div class="adminlist" id="adminList"></div></section>
 <section id="login" class="card login hidden">
 <h2 id="loginTitle">Acceso estudiante</h2>
-<p id="loginIntro" style="color:var(--muted);line-height:1.45">Ingresá o creá tu cuenta para acceder al entrenamiento. Las cuentas de estudiante tienen 30 días de acceso.</p>
-<label class="field" id="nameField"><span>Nombre</span><input id="authName" type="text" autocomplete="name" placeholder="Tu nombre"></label>
+<p id="loginIntro" style="color:var(--muted);line-height:1.45">Ingresá con tu cuenta existente o creá una cuenta nueva.</p>
+<div class="authModeRow" id="authModeRow">
+  <button type="button" class="authModeBtn active" id="modeSignInBtn" onclick="setAuthFormMode('signin')">Iniciar sesión</button>
+  <button type="button" class="authModeBtn" id="modeSignUpBtn" onclick="setAuthFormMode('signup')">Crear cuenta</button>
+</div>
+<label class="field hidden" id="nameField"><span>Nombre</span><input id="authName" type="text" autocomplete="name" placeholder="Tu nombre"></label>
 <label class="field"><span>Correo electrónico</span><input id="authEmail" type="email" autocomplete="email" placeholder="correo@ejemplo.com"></label>
-<label class="field"><span>Contraseña</span><div class="passwordWrap"><input id="authPassword" type="password" autocomplete="current-password" placeholder="Mínimo 6 caracteres"><button type="button" class="pwToggle" onclick="togglePassword('authPassword',this)" aria-label="Mostrar u ocultar contraseña">👁️</button></div></label>
-<label class="field" id="confirmPasswordField"><span>Confirmar contraseña</span><div class="passwordWrap"><input id="authPasswordConfirm" type="password" autocomplete="new-password" placeholder="Repetí la contraseña"><button type="button" class="pwToggle" onclick="togglePassword('authPasswordConfirm',this)" aria-label="Mostrar u ocultar contraseña">👁️</button></div></label>
-<div class="passwordHint" id="passwordHint">Al crear una cuenta, escribí la contraseña dos veces para verificarla.</div>
-<div class="resultActions"><button class="secondary" onclick="signInUser()">Iniciar sesión</button><button class="primary" id="createAccountBtn" onclick="signUpUser()">Crear cuenta</button></div>
-<p id="loginMsg" style="color:var(--red);font-size:12px;line-height:1.4"></p><button class="linkBtn" onclick="requestPasswordReset()">¿Olvidaste tu contraseña?</button>
-<button class="ghost" style="margin-top:10px" onclick="goHome()">Volver</button>
+<label class="field"><span>Contraseña</span><div class="passwordWrap"><input id="authPassword" type="password" autocomplete="current-password" placeholder="Tu contraseña"><button type="button" class="pwToggle" onclick="togglePassword('authPassword',this)" aria-label="Mostrar u ocultar contraseña"><span class="eyeIcon">👁</span></button></div></label>
+<label class="field hidden" id="confirmPasswordField"><span>Confirmar contraseña</span><div class="passwordWrap"><input id="authPasswordConfirm" type="password" autocomplete="new-password" placeholder="Repetí la contraseña"><button type="button" class="pwToggle" onclick="togglePassword('authPasswordConfirm',this)" aria-label="Mostrar u ocultar contraseña"><span class="eyeIcon">👁</span></button></div></label>
+<div class="resultActions" id="signInActions"><button class="primary" style="grid-column:1/-1" onclick="signInUser()">Iniciar sesión</button></div>
+<div class="resultActions hidden" id="signUpActions"><button class="primary" style="grid-column:1/-1" onclick="signUpUser()">Crear cuenta</button></div>
+<p id="signupHint" class="authHint hidden">La contraseña debe escribirse dos veces para confirmar que está correcta.</p>
+<p id="loginMsg" style="color:var(--red);font-size:12px;line-height:1.4"></p>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+  <button class="ghost" id="forgotPasswordBtn" onclick="forgotPassword()">¿Olvidaste tu contraseña?</button>
+  <button class="ghost" onclick="goHome()">Volver</button>
+</div>
 </section>
 
 <section id="resetPassword" class="card login hidden">
-  <h2>Crear nueva contraseña</h2>
-  <p style="color:var(--muted);line-height:1.45">Ingresá la nueva contraseña dos veces para confirmar el cambio.</p>
-  <label class="field"><span>Nueva contraseña</span><div class="passwordWrap"><input id="newPassword" type="password" autocomplete="new-password" placeholder="Mínimo 6 caracteres"><button type="button" class="pwToggle" onclick="togglePassword('newPassword',this)" aria-label="Mostrar u ocultar contraseña">👁️</button></div></label>
-  <label class="field"><span>Confirmar nueva contraseña</span><div class="passwordWrap"><input id="newPasswordConfirm" type="password" autocomplete="new-password" placeholder="Repetí la contraseña"><button type="button" class="pwToggle" onclick="togglePassword('newPasswordConfirm',this)" aria-label="Mostrar u ocultar contraseña">👁️</button></div></label>
-  <div class="resetActions"><button class="primary" onclick="completePasswordReset()">Guardar nueva contraseña</button><button class="secondary" onclick="goHome()">Cancelar</button></div>
-  <p id="resetMsg" style="font-size:12px;line-height:1.4"></p>
+<h2>Nueva contraseña</h2>
+<p style="color:var(--muted);line-height:1.45">Ingresá una nueva contraseña y repetila para confirmarla.</p>
+<label class="field"><span>Nueva contraseña</span><div class="passwordWrap"><input id="newPassword" type="password" autocomplete="new-password" placeholder="Mínimo 6 caracteres"><button type="button" class="pwToggle" onclick="togglePassword('newPassword',this)" aria-label="Mostrar u ocultar contraseña"><span class="eyeIcon">👁</span></button></div></label>
+<label class="field"><span>Confirmar nueva contraseña</span><div class="passwordWrap"><input id="newPasswordConfirm" type="password" autocomplete="new-password" placeholder="Repetí la contraseña"><button type="button" class="pwToggle" onclick="togglePassword('newPasswordConfirm',this)" aria-label="Mostrar u ocultar contraseña"><span class="eyeIcon">👁</span></button></div></label>
+<button class="primary" style="width:100%" onclick="saveNewPassword()">Guardar nueva contraseña</button>
+<p id="resetMsg" style="font-size:12px;line-height:1.4"></p>
 </section>
-
 <section id="alignmentVideos" class="hidden">
   <div class="adminbar">
     <div><h2 style="margin:0">🎥 Ayudas visuales</h2><div style="font-size:12px;color:var(--muted)">Alineación correcta · material complementario de Michael Jiménez</div></div>
@@ -445,7 +459,7 @@ function togglePassword(id,btn){
  const input=$(id); if(!input)return;
  const reveal=input.type==='password';
  input.type=reveal?'text':'password';
- if(btn)btn.textContent=reveal?'🙈':'👁️';
+ if(btn)btn.innerHTML=reveal?'<span class="eyeIcon">◉</span>':'<span class="eyeIcon">👁</span>';
 }
 function openAlignmentVideos(){if(!requireTrainingAccess())return;show('alignmentVideos')}
 
@@ -486,7 +500,45 @@ function updateAccessUI(){let b=$('accessBtn');if(!currentUser){b.textContent='C
  else if(currentProfile?.access_expires_at){let d=new Date(currentProfile.access_expires_at);$('progressStorage').textContent='Acceso hasta '+d.toLocaleDateString('es-CR')}
  else $('progressStorage').textContent='Cuenta conectada';
 }
-async function initAuth(){const {data}=await sb.auth.getSession();currentUser=data.session?.user||null;if(currentUser)await loadProfile();if(location.search.includes('reset=1')&&currentUser)show('resetPassword');sb.auth.onAuthStateChange(async(event,session)=>{currentUser=session?.user||null;if(currentUser)await loadProfile();else{currentProfile=null;updateAccessUI()}if(event==='PASSWORD_RECOVERY'){show('resetPassword')}})}
+async function initAuth(){
+ const {data}=await sb.auth.getSession();
+ currentUser=data.session?.user||null;
+ if(currentUser)await loadProfile();
+ sb.auth.onAuthStateChange(async(event,session)=>{
+   currentUser=session?.user||null;
+   if(event==='PASSWORD_RECOVERY'){show('resetPassword');return}
+   if(currentUser)await loadProfile();
+   else{currentProfile=null;updateAccessUI()}
+ })
+}
+
+let authFormMode='signin';
+function translateAuthError(message=''){
+ const m=String(message||'');
+ if(/security purposes.*after/i.test(m)) return 'Esperá unos segundos antes de volver a intentarlo.';
+ if(/invalid login credentials/i.test(m)) return 'Correo o contraseña incorrectos.';
+ if(/email not confirmed/i.test(m)) return 'Primero confirmá tu correo electrónico desde el mensaje que recibiste.';
+ if(/user already registered/i.test(m)) return 'Ya existe una cuenta con este correo. Usá “Iniciar sesión”.';
+ if(/password should be at least/i.test(m)) return 'La contraseña debe tener al menos 6 caracteres.';
+ if(/rate limit/i.test(m)) return 'Se alcanzó temporalmente el límite de solicitudes. Esperá un momento e intentá de nuevo.';
+ return m || 'Ocurrió un error. Intentá de nuevo.';
+}
+function setAuthFormMode(mode){
+ authFormMode=mode==='signup'?'signup':'signin';
+ const signup=authFormMode==='signup';
+ $('nameField').classList.toggle('hidden',!signup);
+ $('confirmPasswordField').classList.toggle('hidden',!signup);
+ $('signUpActions').classList.toggle('hidden',!signup);
+ $('signInActions').classList.toggle('hidden',signup);
+ $('signupHint').classList.toggle('hidden',!signup);
+ $('forgotPasswordBtn').classList.toggle('hidden',signup);
+ $('modeSignInBtn').classList.toggle('active',!signup);
+ $('modeSignUpBtn').classList.toggle('active',signup);
+ $('authPassword').setAttribute('autocomplete',signup?'new-password':'current-password');
+ $('authPassword').placeholder=signup?'Mínimo 6 caracteres':'Tu contraseña';
+ setLoginMessage('');
+}
+
 function openAccess(mode='student'){
  desiredAccessMode=mode;
  if(currentUser){
@@ -494,39 +546,57 @@ function openAccess(mode='student'){
    return showAccount();
  }
  $('loginTitle').textContent=mode==='admin'?'Acceso administrador':'Acceso estudiante';
- $('loginIntro').textContent=mode==='admin'
-   ?'Ingreso exclusivo para administradores autorizados. La cuenta debe estar previamente autorizada en el sistema.'
-   :'Ingresá o creá tu cuenta para acceder al entrenamiento. Las cuentas de estudiante tienen 30 días de acceso.';
- $('createAccountBtn').textContent=mode==='admin'?'Crear / activar cuenta Admin':'Crear cuenta';
- $('confirmPasswordField').classList.remove('hidden');$('passwordHint').classList.remove('hidden');
- show('login');$('authEmail').focus();
+ $('loginIntro').textContent=mode==='admin'?'Ingresá con una cuenta de administrador autorizada.':'Ingresá con tu cuenta existente o creá una cuenta nueva.';
+ $('modeSignUpBtn').classList.toggle('hidden',mode==='admin');
+ setAuthFormMode('signin');
+ show('login');
+ $('authEmail').focus();
 }
 function showAccount(){if(!currentUser)return openAccess();$('accountName').textContent=currentProfile?.display_name||'Usuario';$('accountEmail').textContent=currentUser.email;$('accountRole').innerHTML=currentProfile?.role==='admin'?'<b>Administrador</b><br>Esta cuenta tiene acceso al panel de administración.':`<b>Usuario</b><br>${currentProfile?.is_active?'Acceso activo':'Acceso desactivado'}${currentProfile?.access_expires_at?' · vence '+new Date(currentProfile.access_expires_at).toLocaleDateString('es-CR'):''}.`;$('adminPanelBtn').classList.toggle('hidden',currentProfile?.role!=='admin');show('account')}
-async function signUpUser(){let email=$('authEmail').value.trim().toLowerCase(),password=$('authPassword').value,confirm=$('authPasswordConfirm').value,name=$('authName').value.trim();if(!email||password.length<6){setLoginMessage('Ingresá un correo válido y una contraseña de al menos 6 caracteres.');return}if(password!==confirm){setLoginMessage('Las dos contraseñas no coinciden. Revisalas e intentá nuevamente.');return}setLoginMessage('Creando cuenta…',true);const {data,error}=await sb.auth.signUp({email,password,options:{data:{display_name:name||email.split('@')[0]},emailRedirectTo:APP_URL}});if(error){setLoginMessage(error.message);return}if(data.session){currentUser=data.user;await loadProfile();setLoginMessage('Cuenta creada correctamente.',true);showAccount()}else setLoginMessage('Cuenta creada. Revisá tu correo y confirmá la dirección para poder iniciar sesión.',true)}
-async function signInUser(){let email=$('authEmail').value.trim().toLowerCase(),password=$('authPassword').value;if(!email||!password){setLoginMessage('Ingresá tu correo y contraseña.');return}setLoginMessage('Ingresando…',true);const {data,error}=await sb.auth.signInWithPassword({email,password});if(error){setLoginMessage(error.message);return}currentUser=data.user;await loadProfile();
+async function signUpUser(){
+ let email=$('authEmail').value.trim().toLowerCase(),password=$('authPassword').value,confirm=$('authPasswordConfirm').value,name=$('authName').value.trim();
+ if(!email){setLoginMessage('Ingresá un correo electrónico válido.');return}
+ if(password.length<6){setLoginMessage('La contraseña debe tener al menos 6 caracteres.');return}
+ if(password!==confirm){setLoginMessage('Las contraseñas no coinciden.');return}
+ setLoginMessage('Creando cuenta…',true);
+ const {data,error}=await sb.auth.signUp({email,password,options:{data:{display_name:name||email.split('@')[0]},emailRedirectTo:APP_URL}});
+ if(error){setLoginMessage(translateAuthError(error.message));return}
+ if(data.session){
+   currentUser=data.user;await loadProfile();setLoginMessage('Cuenta creada correctamente.',true);showAccount()
+ }else{
+   setLoginMessage('Cuenta creada. Revisá el correo que usaste para registrarte y confirmá tu dirección. Luego regresá e iniciá sesión.',true);
+   setAuthFormMode('signin');
+ }
+}
+async function signInUser(){
+ let email=$('authEmail').value.trim().toLowerCase(),password=$('authPassword').value;
+ if(!email||!password){setLoginMessage('Ingresá tu correo y contraseña.');return}
+ setLoginMessage('Ingresando…',true);
+ const {data,error}=await sb.auth.signInWithPassword({email,password});
+ if(error){setLoginMessage(translateAuthError(error.message));return}
+ currentUser=data.user;await loadProfile();
  if(desiredAccessMode==='admin' && currentProfile?.role!=='admin'){
    await sb.auth.signOut();currentUser=null;currentProfile=null;updateAccessUI();
-   setLoginMessage('Esta cuenta no está autorizada como Administrador.');return
+   setLoginMessage('Esta cuenta no está autorizada como administrador.');return
  }
- setLoginMessage('',true);showAccount()}
-
-async function requestPasswordReset(){
- const email=$('authEmail').value.trim().toLowerCase();
- if(!email){setLoginMessage('Escribí primero el correo de tu cuenta.');$('authEmail').focus();return}
- setLoginMessage('Enviando enlace de recuperación…',true);
- const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:APP_URL+'?reset=1'});
- if(error){setLoginMessage(error.message);return}
- setLoginMessage('Listo. Revisá tu correo para abrir el enlace de recuperación.',true);
+ setLoginMessage('',true);showAccount()
 }
-async function completePasswordReset(){
+async function forgotPassword(){
+ const email=$('authEmail').value.trim().toLowerCase();
+ if(!email){setLoginMessage('Ingresá primero el correo de tu cuenta.');return}
+ setLoginMessage('Enviando enlace de recuperación…',true);
+ const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:APP_URL});
+ if(error){setLoginMessage(translateAuthError(error.message));return}
+ setLoginMessage('Te enviamos un enlace para restablecer tu contraseña. Revisá tu correo.',true)
+}
+async function saveNewPassword(){
  const p=$('newPassword').value,c=$('newPasswordConfirm').value,msg=$('resetMsg');
- if(p.length<6){msg.style.color='var(--red)';msg.textContent='La contraseña debe tener al menos 6 caracteres.';return}
- if(p!==c){msg.style.color='var(--red)';msg.textContent='Las contraseñas no coinciden.';return}
- msg.style.color='var(--green)';msg.textContent='Guardando…';
+ if(p.length<6){msg.textContent='La contraseña debe tener al menos 6 caracteres.';msg.style.color='var(--red)';return}
+ if(p!==c){msg.textContent='Las contraseñas no coinciden.';msg.style.color='var(--red)';return}
  const {error}=await sb.auth.updateUser({password:p});
- if(error){msg.style.color='var(--red)';msg.textContent=error.message;return}
- msg.textContent='Contraseña actualizada. Ya podés continuar con tu cuenta.';
- setTimeout(()=>showAccount(),900);
+ if(error){msg.textContent=translateAuthError(error.message);msg.style.color='var(--red)';return}
+ msg.textContent='Contraseña actualizada correctamente.';msg.style.color='var(--green)';
+ setTimeout(()=>{show('login');setAuthFormMode('signin')},900)
 }
 async function logoutUser(){await sb.auth.signOut();currentUser=null;currentProfile=null;updateAccessUI();goHome()}
 function openAdminPanel(){if(!currentUser||currentProfile?.role!=='admin'){setLoginMessage('Esta cuenta no tiene permisos de administrador.');return openAccess()}show('admin');renderAdmin();adminStats();renderUsers()}
